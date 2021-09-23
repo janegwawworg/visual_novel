@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Character",
+"language": "GDScript",
+"path": "res://src/Characters/Character.gd"
+}, {
+"base": "Node2D",
+"class": "CharacterDisplay",
+"language": "GDScript",
+"path": "res://src/Characters/CharacterDisplay.gd"
+} ]
 _global_script_class_icons={
-
+"Character": "",
+"CharacterDisplay": ""
 }
 
 [application]
