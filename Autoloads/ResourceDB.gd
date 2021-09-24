@@ -24,7 +24,7 @@ func _load_resources(directory_path: String, check_type_function: String) -> Dic
 			var resource: Resource = load(directory_path.plus_file(filename))
 
 			if not call(check_type_function, resource):
-				
+
 				continue
 			resources[resource.id] = resource
 		filename = directory.get_next()
