@@ -19,25 +19,6 @@ func _ready() -> void:
 	_right_sprite.hide()
 	_tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
 
-	var characters_test = [
-		preload("res://src/Characters/dani.tres"),
-		preload("res://src/Characters/sophia.tres")
-	]
-
-	# Wait a bit so the window is visible before the animation start.
-	yield(get_tree().create_timer(0.5), "timeout")
-
-	# The two characters appear one after the other.
-	display(characters_test[0], SIDE.LEFT, "", "enter")
-	yield(self, "display_finished")
-	display(characters_test[1], SIDE.RIGHT, "", "enter")
-
-	# After one second, the first character leaves, then the other.
-	yield(get_tree().create_timer(1.0), "timeout")
-	display(characters_test[0], SIDE.LEFT, "", "leave")
-	yield(get_tree().create_timer(1.0), "timeout")
-	display(characters_test[1], SIDE.RIGHT, "", "leave")
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and _tween.is_active():

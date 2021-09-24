@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/Characters/Character.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+id = "character_id"
+display_name = "Display Name"
+bio = "Fill this with the character's complete bio. Supports BBCode."
+age = 0
+default_image = "neutral"
+images = {
+"neutral": null
+}

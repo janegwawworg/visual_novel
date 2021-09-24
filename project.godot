@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "Background",
+"language": "GDScript",
+"path": "res://src/Backgrounds/Background.gd"
+}, {
+"base": "Resource",
 "class": "Character",
 "language": "GDScript",
 "path": "res://src/Characters/Character.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://src/Characters/CharacterDisplay.gd"
 } ]
 _global_script_class_icons={
+"Background": "",
 "Character": "",
 "CharacterDisplay": ""
 }
@@ -28,6 +34,10 @@ _global_script_class_icons={
 
 config/name="visual_novel_template"
 config/icon="res://icon.png"
+
+[autoload]
+
+ResourceDB="*res://Autoloads/ResourceDB.gd"
 
 [display]
 
