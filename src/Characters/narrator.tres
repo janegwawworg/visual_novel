@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-id = "character_id"
-display_name = "Display Name"
+id = "narrator"
+display_name = "Narrator"
 bio = "Fill this with the character's complete bio. Supports BBCode."
 age = 0
 default_image = "neutral"
