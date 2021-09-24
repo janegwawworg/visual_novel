@@ -23,16 +23,23 @@ _global_script_classes=[ {
 "class": "CharacterDisplay",
 "language": "GDScript",
 "path": "res://src/Characters/CharacterDisplay.gd"
+}, {
+"base": "Control",
+"class": "ScenePlayer",
+"language": "GDScript",
+"path": "res://src/ScenePlayer.gd"
 } ]
 _global_script_class_icons={
 "Background": "",
 "Character": "",
-"CharacterDisplay": ""
+"CharacterDisplay": "",
+"ScenePlayer": ""
 }
 
 [application]
 
 config/name="visual_novel_template"
+run/main_scene="res://src/ScenePlayer.tscn"
 config/icon="res://icon.png"
 
 [autoload]
