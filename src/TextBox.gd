@@ -2,6 +2,7 @@ extends TextureRect
 
 signal next_requested
 signal display_finished
+signal choice_made(target_id)
 
 export var display_speed := 20.0
 export var bbcode_text := "" setget set_bbcode_text
@@ -11,6 +12,8 @@ onready var _name_label: Label = $NameBackground/Label
 onready var _blinking_arrow: Control = $RichTextLabel/BlinkingArrow
 onready var _tween: Tween = $Tween
 onready var _anim_player: AnimationPlayer = $AnimationPlayer
+onready var _choice_selector: ChoiceSelector = $ChoiceSelector
+onready var _name_background: TextureRect = $NameBackground
 
 
 func _ready() -> void:
@@ -22,6 +25,7 @@ func _ready() -> void:
 	_rich_text_label.visible_characters = 0
 
 	_tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
+	_choice_selector.connect("choice_made", self, "_on_ChoiceSelector_choice_made")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -74,3 +78,17 @@ func fade_in_async() -> void:
 func fade_out_async() -> void:
 	_anim_player.play("fade_out")
 	yield(_anim_player, "animation_finished")
+
+
+func display_choice(choices: Array) -> void:
+	_name_background.hide()
+	_rich_text_label.hide()
+	_blinking_arrow.hide()
+
+	_choice_selector.display(choices)
+
+
+func _on_ChoiceSelector_choice_made(target_id: int) -> void:
+	emit_signal("choice_made", target_id)
+	_name_background.show()
+	_rich_text_label.show()

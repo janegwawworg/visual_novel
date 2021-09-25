@@ -6,11 +6,6 @@ onready var _characters := _load_resources("res://src/Characters/", "_is_charact
 onready var _backgrounds := _load_resources("res://src/Backgrounds/", "_is_background")
 
 
-func _ready():
-	print(_characters)
-	print(_backgrounds)
-
-
 func _load_resources(directory_path: String, check_type_function: String) -> Dictionary:
 	var directory := Directory.new()
 	if directory.open(directory_path) != OK:

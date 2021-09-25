@@ -3,50 +3,21 @@ class_name ScenePlayer
 
 signal scene_finished
 signal transition_finished
+signal restart_requested
 
 const KEY_END_OF_SCENE := -1
+const KEY_RESTART_SCENE := -2
 const TRANSITIONS := {
 	fade_in = "_appear_async",
 	fade_out = "_disappear_async",
 	}
 
-var _scene_data := {
-	 3: {
-		transition = "fade_in",
-		next = 0
-	},
-	0: {
-		character = "sophia",
-		side = "left",
-		animation = "enter",
-		line = "Hi there! My name's Sophia.",
-		next = 1
-		},
-	1: {
-		character = "dani",
-		side = "right",
-		animation = "enter",
-		next = 2
-		},
-	2: {
-		character = "dani",
-		line = "Hey, I'm Dani.",
-		next = 4
-		},
-	4: {
-		transition = "fade_out",
-		next = -1
-		}
-	}
+var _scene_data := {}
 
 onready var _text_box := $TextBox
 onready var _character_displayer := $CharacterDisplay
 onready var _background := $Background
 onready var _anim_player: AnimationPlayer = $FadeAnimationPlayer
-
-
-func _ready() -> void:
-	run_scene()
 
 
 func run_scene() -> void:
@@ -83,6 +54,12 @@ func run_scene() -> void:
 			call(TRANSITIONS[node.transition])
 			yield(self, "transition_finished")
 			key = node.next
+		elif "choices" in node:
+			_text_box.display_choice(node.choices)
+			key = yield(_text_box, "choice_made")
+			if key == KEY_RESTART_SCENE:
+				emit_signal("restart_requested")
+				return
 		else:
 			key = node.next
 
@@ -102,3 +79,17 @@ func _disappear_async() -> void:
 	_anim_player.play("fade_out")
 	yield(_anim_player, "animation_finished")
 	emit_signal("transition_finished")
+
+
+func load_scene(file_path: String) -> void:
+	var file := File.new()
+	file.open(file_path, File.READ)
+	_scene_data = str2var(file.get_as_text())
+	file.close()
+
+
+func _store_scene_data(data: Dictionary, path: String) -> void:
+	var file := File.new()
+	file.open(path, File.WRITE)
+	file.store_string(var2str(data))
+	file.close()
