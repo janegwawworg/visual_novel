@@ -2,10 +2,19 @@ extends Control
 class_name ScenePlayer
 
 signal scene_finished
+signal transition_finished
 
 const KEY_END_OF_SCENE := -1
+const TRANSITIONS := {
+	fade_in = "_appear_async",
+	fade_out = "_disappear_async",
+	}
 
 var _scene_data := {
+	 3: {
+		transition = "fade_in",
+		next = 0
+	},
 	0: {
 		character = "sophia",
 		side = "left",
@@ -17,22 +26,26 @@ var _scene_data := {
 		character = "dani",
 		side = "right",
 		animation = "enter",
-		next = 2,
+		next = 2
 		},
 	2: {
 		character = "dani",
 		line = "Hey, I'm Dani.",
+		next = 4
+		},
+	4: {
+		transition = "fade_out",
 		next = -1
-	   }
+		}
 	}
 
 onready var _text_box := $TextBox
 onready var _character_displayer := $CharacterDisplay
 onready var _background := $Background
+onready var _anim_player: AnimationPlayer = $FadeAnimationPlayer
 
 
 func _ready() -> void:
-	yield(_text_box.fade_in_async(), "completed")
 	run_scene()
 
 
@@ -66,8 +79,26 @@ func run_scene() -> void:
 			_text_box.display(node.line, character.display_name)
 			yield(_text_box, "next_requested")
 			key = node.next
+		elif "transition" in node:
+			call(TRANSITIONS[node.transition])
+			yield(self, "transition_finished")
+			key = node.next
 		else:
 			key = node.next
 
-		#_character_displayer.hide()
+		_character_displayer.hide()
 		emit_signal("scene_finished")
+
+
+func _appear_async() -> void:
+	_anim_player.play("fade_in")
+	yield(_anim_player, "animation_finished")
+	yield(_text_box.fade_in_async(), "completed")
+	emit_signal("transition_finished")
+
+
+func _disappear_async() -> void:
+	yield(_text_box.fade_out_async(), "completed")
+	_anim_player.play("fade_out")
+	yield(_anim_player, "animation_finished")
+	emit_signal("transition_finished")
