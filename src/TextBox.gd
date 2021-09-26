@@ -42,7 +42,13 @@ func display(text: String, character_name := "", speed := display_speed) -> void
 	if speed != display_speed:
 		display_speed = speed
 
-	if character_name != "":
+	if character_name == ResourceDB.get_narrator().display_name:
+		_name_background.hide()
+	elif character_name != "":
+		_name_background.show()
+		if _name_label.text == "":
+			_name_label.appear()
+
 		_name_label.text = character_name
 
 
@@ -85,6 +91,7 @@ func display_choice(choices: Array) -> void:
 	_rich_text_label.hide()
 	_blinking_arrow.hide()
 
+	_name_background.disappear()
 	_choice_selector.display(choices)
 
 
@@ -92,3 +99,4 @@ func _on_ChoiceSelector_choice_made(target_id: int) -> void:
 	emit_signal("choice_made", target_id)
 	_name_background.show()
 	_rich_text_label.show()
+	_name_background.appear()
