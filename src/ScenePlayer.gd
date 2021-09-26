@@ -63,8 +63,8 @@ func run_scene() -> void:
 		else:
 			key = node.next
 
-		_character_displayer.hide()
-		emit_signal("scene_finished")
+	_character_displayer.hide()
+	emit_signal("scene_finished")
 
 
 func _appear_async() -> void:

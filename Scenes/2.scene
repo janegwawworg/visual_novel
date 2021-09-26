@@ -1,0 +1,43 @@
+{
+0: {
+"next": 1,
+"transition": "fade_in"
+},
+1: {
+"animation": "enter",
+"character": "dani",
+"next": 2,
+"side": "left"
+},
+2: {
+"animation": "enter",
+"character": "sophia",
+"next": 3,
+"side": "right"
+},
+3: {
+"character": "dani",
+"line": "Hey, what's ...
+
+...",
+"next": 4
+},
+4: {
+"line": "Dani felt he had already lived this scene.",
+"next": 5
+},
+5: {
+"character": "sophia",
+"line": "What's going on?",
+"next": 6
+},
+6: {
+"character": "dani",
+"line": "I'm having a deja-vu.",
+"next": 7
+},
+7: {
+"next": -1,
+"transition": "fade_out"
+}
+}
