@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/img/text-box.png" type="Texture" id=1]
 [ext_resource path="res://src/img/character-name-box.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/TextBox.gd" type="Script" id=5]
 [ext_resource path="res://src/ChoiceSelector.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/FadingControl.gd" type="Script" id=7]
+[ext_resource path="res://src/SkipButton.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -204,6 +205,12 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SkipButton" parent="." instance=ExtResource( 8 )]
+margin_left = -127.151
+margin_top = -81.792
+margin_right = -24.1506
+margin_bottom = -26.792
 
 [node name="NameBackground" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )

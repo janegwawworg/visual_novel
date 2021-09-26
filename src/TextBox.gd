@@ -14,6 +14,7 @@ onready var _tween: Tween = $Tween
 onready var _anim_player: AnimationPlayer = $AnimationPlayer
 onready var _choice_selector: ChoiceSelector = $ChoiceSelector
 onready var _name_background: TextureRect = $NameBackground
+onready var _skip_button: Button = $SkipButton
 
 
 func _ready() -> void:
@@ -26,14 +27,19 @@ func _ready() -> void:
 
 	_tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
 	_choice_selector.connect("choice_made", self, "_on_ChoiceSelector_choice_made")
+	_skip_button.connect("timer_ticked", self, "_on_SkipButton_timer_ticked")
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		if _blinking_arrow.visible:
-			emit_signal("next_requested")
-		else:
-			_tween.seek(INF)
+		advance_dialogue()
+
+func advance_dialogue() -> void:
+	if _blinking_arrow.visible:
+		emit_signal("next_requested")
+	else:
+		_tween.seek(INF)
+
 
 
 func display(text: String, character_name := "", speed := display_speed) -> void:
@@ -93,6 +99,7 @@ func display_choice(choices: Array) -> void:
 
 	_name_background.disappear()
 	_choice_selector.display(choices)
+	_skip_button.hide()
 
 
 func _on_ChoiceSelector_choice_made(target_id: int) -> void:
@@ -100,3 +107,8 @@ func _on_ChoiceSelector_choice_made(target_id: int) -> void:
 	_name_background.show()
 	_rich_text_label.show()
 	_name_background.appear()
+	_skip_button.show()
+
+
+func _on_SkipButton_timer_ticked() -> void:
+	advance_dialogue()

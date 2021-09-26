@@ -21,7 +21,7 @@ func appear() -> void:
 
 func disappear() -> void:
 	_tween.interpolate_property(
-		self, "module", Color.white, COLOR_WHITE_TRANSPARENT, appear_duration / 2.0
+		self, "modulate", Color.white, COLOR_WHITE_TRANSPARENT, appear_duration / 2.0
 		)
 	_tween.start()
 	_tween.seek(0)

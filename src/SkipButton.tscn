@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/SkipButton.gd" type="Script" id=1]
+
+[sub_resource type="InputEventAction" id=3]
+action = "fast_forward"
+pressed = true
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 3 )
+
+[node name="SkipButton" type="Button"]
+self_modulate = Color( 1, 1, 1, 0.427451 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -46.2439
+margin_top = -27.6445
+margin_right = -8.2439
+margin_bottom = -7.64453
+keep_pressed_outside = true
+shortcut = SubResource( 2 )
+text = "Skip"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 0.3
