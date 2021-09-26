@@ -1,6 +1,10 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/Characters/Character.gd" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/Sophia.png-c00be0382c80b93e3767392235a71a57.stex"
 
 [resource]
 script = ExtResource( 1 )
@@ -10,5 +14,5 @@ bio = "Fill this with the character's complete bio. Supports BBCode."
 age = 0
 default_image = "neutral"
 images = {
-"neutral": null
+"neutral": SubResource( 1 )
 }

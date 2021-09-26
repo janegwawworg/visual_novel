@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/img/text-box.png" type="Texture" id=1]
 [ext_resource path="res://src/img/character-name-box.png" type="Texture" id=2]
 [ext_resource path="res://src/theme.tres" type="Theme" id=3]
 [ext_resource path="res://src/BlinkingArrow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/TextBox.gd" type="Script" id=5]
+[ext_resource path="res://src/ChoiceSelector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/FadingControl.gd" type="Script" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -208,6 +210,7 @@ margin_right = 595.0
 margin_bottom = 69.0
 texture = ExtResource( 2 )
 expand = true
+script = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="NameBackground"]
 anchor_left = 0.5
@@ -221,6 +224,7 @@ margin_bottom = 17.5
 text = "Sophia"
 align = 1
 valign = 1
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -254,3 +258,8 @@ anims/fade_out = SubResource( 2 )
 anims/setup = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="ChoiceSelector" parent="." instance=ExtResource( 6 )]
+margin_left = 640.0
+margin_top = 58.0
+margin_right = -684.0

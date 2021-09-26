@@ -1,0 +1,47 @@
+{
+0: {
+"next": 1,
+"transition": "fade_in"
+},
+1: {
+"animation": "enter",
+"character": "dani",
+"next": 2,
+"side": "right"
+},
+2: {
+"animation": "enter",
+"character": "sophia",
+"line": "Hey Dani!",
+"next": 3,
+"side": "left"
+},
+3: {
+"choices": [ {
+"label": "Hi Sophia!",
+"target": 6
+}, {
+"label": "Do I know you?",
+"target": 4
+} ]
+},
+4: {
+"character": "sophia",
+"line": "Of course, you do! I'm your sister, duh.",
+"next": 5
+},
+5: {
+"character": "dani",
+"line": "Oh...",
+"next": 6
+},
+6: {
+"character": "sophia",
+"line": "What's up?",
+"next": 7
+},
+7: {
+"next": -1,
+"transition": "fade_out"
+}
+}}

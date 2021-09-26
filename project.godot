@@ -23,16 +23,29 @@ _global_script_classes=[ {
 "class": "CharacterDisplay",
 "language": "GDScript",
 "path": "res://src/Characters/CharacterDisplay.gd"
+}, {
+"base": "VBoxContainer",
+"class": "ChoiceSelector",
+"language": "GDScript",
+"path": "res://src/ChoiceSelector.gd"
+}, {
+"base": "Control",
+"class": "ScenePlayer",
+"language": "GDScript",
+"path": "res://src/ScenePlayer.gd"
 } ]
 _global_script_class_icons={
 "Background": "",
 "Character": "",
-"CharacterDisplay": ""
+"CharacterDisplay": "",
+"ChoiceSelector": "",
+"ScenePlayer": ""
 }
 
 [application]
 
 config/name="visual_novel_template"
+run/main_scene="res://src/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

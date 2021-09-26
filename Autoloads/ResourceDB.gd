@@ -6,11 +6,6 @@ onready var _characters := _load_resources("res://src/Characters/", "_is_charact
 onready var _backgrounds := _load_resources("res://src/Backgrounds/", "_is_background")
 
 
-func _ready():
-	print(_characters)
-	print(_backgrounds)
-
-
 func _load_resources(directory_path: String, check_type_function: String) -> Dictionary:
 	var directory := Directory.new()
 	if directory.open(directory_path) != OK:
@@ -24,8 +19,8 @@ func _load_resources(directory_path: String, check_type_function: String) -> Dic
 			var resource: Resource = load(directory_path.plus_file(filename))
 
 			if not call(check_type_function, resource):
-
 				continue
+
 			resources[resource.id] = resource
 		filename = directory.get_next()
 	directory.list_dir_end()
